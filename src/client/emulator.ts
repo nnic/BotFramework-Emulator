@@ -112,6 +112,16 @@ export class Emulator {
         request(options);
     }
 
+    public static sendActivity() {
+        const settings = getSettings();
+        let options: request.OptionsWithUrl = {
+            url: `${this.serviceUrl}/emulator/${settings.conversation.conversationId}/event`,
+            method: "POST",
+            json : '{ type: "event", value: "@Model.EncryptedRelationId", from: { id: "pageLoadedId" }, name: "pageLoadedName" }'
+        };
+         request(options);
+    }
+
     public static quitAndInstall() {
         const settings = getSettings();
         let options: request.OptionsWithUrl = {

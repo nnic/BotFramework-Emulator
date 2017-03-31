@@ -54,6 +54,8 @@ export function navigate(url: string) {
                 navigateBotCredsUrl(params);
             } else if (parsed.host === 'command') {
                 navigateCommandUrl(params);
+            } else if (parsed.host === 'sendactivity') {
+                navigateSendActivityUrl(params);
             }
         } else {
             shell.openExternal(url, { activate: true });
@@ -93,6 +95,10 @@ function navigateInspectUrl(params: string[]) {
 
 function navigateAppSettingsUrl(args: string[]) {
     AddressBarActions.showAppSettings();
+}
+
+function navigateSendActivityUrl(args: string[]) {
+    AddressBarActions.showSendActivity();
 }
 
 function navigateBotCredsUrl(args: string[]) {

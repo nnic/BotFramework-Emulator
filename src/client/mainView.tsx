@@ -46,6 +46,7 @@ import { IUser } from '../types/userTypes';
 import { AboutDialog } from './dialogs/aboutDialog';
 import { AppSettingsDialog } from './dialogs/appSettingsDialog';
 import { ConversationSettingsDialog } from './dialogs/conversationSettingsDialog';
+import { SendActivityDialog } from './dialogs/sendActivityDialog';
 import * as Constants from './constants';
 import { Emulator } from './emulator';
 
@@ -215,6 +216,7 @@ export class MainView extends React.Component<{}, {}> {
                 <AboutDialog />
                 <AppSettingsDialog />
                 <ConversationSettingsDialog />
+                <SendActivityDialog />
             </div>
         );
     }

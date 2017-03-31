@@ -78,7 +78,8 @@ export interface IAddressBarState {
     showAppSettings: boolean,
     showConversationSettings: boolean,
     showSearchResults: boolean,
-    showBotCreds: boolean
+    showBotCreds: boolean,
+    showSendActivity: boolean
 }
 
 export interface IConversationState {
@@ -144,7 +145,8 @@ export const addressBarDefault: IAddressBarState = {
     showAppSettings: false,
     showConversationSettings: false,
     showSearchResults: false,
-    showBotCreds: false
+    showBotCreds: false,
+    showSendActivity: false
 }
 
 export const conversationDefault: IConversationState = {

@@ -106,6 +106,10 @@ type AddressBarAction = {
     type: 'AddressBar_ShowBotCreds'
 } | {
     type: 'AddressBar_HideBotCreds'
+}| {
+    type: 'AddressBar_ShowSendActivity'
+}| {
+    type: 'AddressBar_HideSendActivity'
 }
 
 
@@ -252,6 +256,18 @@ export class AddressBarActions {
             type: 'AddressBar_HideBotCreds'
         })
     }
+    static showSendActivity() {
+        this.hideBotCreds();
+        this.hideSearchResults();
+        dispatch<AddressBarAction>({
+            type: 'AddressBar_ShowSendActivity'
+        })
+    }
+    static hideSendActivity() {
+        dispatch<AddressBarAction>({
+            type: 'AddressBar_HideSendActivity'
+        })
+    }
 }
 
 export class ConversationActions {
@@ -385,6 +401,10 @@ export const addressBarReducer: Reducer<IAddressBarState> = (
             return Object.assign({}, state, { showBotCreds: true });
         case 'AddressBar_HideBotCreds':
             return Object.assign({}, state, { showBotCreds: false });
+        case 'AddressBar_ShowSendActivity':
+            return Object.assign({}, state, { showSendActivity: true });
+        case 'AddressBar_HideSendActivity':
+            return Object.assign({}, state, { showSendActivity: false });    
         default:
             return state;
     }

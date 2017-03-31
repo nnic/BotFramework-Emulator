@@ -288,6 +288,10 @@ export class Conversation {
         this.postActivityToBot(activity, false, () => {});
     }
 
+    public sendActivity(activity: IActivity) {
+        this.postActivityToBot(activity, false, () => {});
+    }
+
     /**
      * Returns activities since the watermark.
      */
