@@ -104,7 +104,7 @@ export class SendActivityDialog extends React.Component<{}, {}> {
                 <div className="dialog-background">
                 </div>
                 <div className="emu-dialog sendactivity-dialog">
-                    <h2 className="dialog-header">Send Background Activity</h2>
+                    <h2 className="dialog-header">Send Direct Line Activity</h2>
                     <div className="dialog-closex" onClick={() => this.onClose()} dangerouslySetInnerHTML={{ __html: Constants.clearCloseIcon("", 24) }} />
                     <div className="sendactivity-lowerpane">
                         <div className={"emu-tab emu-visible"}>
