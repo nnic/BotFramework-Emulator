@@ -33,7 +33,7 @@
 
 import * as request from 'request';
 import { getSettings } from './settings';
-import { IActivity } from "../types/activityTypes";
+import { IGenericActivity } from "../types/activityTypes";
 
 
 export class Emulator {
@@ -113,10 +113,10 @@ export class Emulator {
         request(options);
     }
 
-    public static sendActivity(activity : IActivity) {
+    public static sendActivity(activity : IGenericActivity) {
         const settings = getSettings();
         let options: request.OptionsWithUrl = {
-            url: `${this.serviceUrl}/emulator/${settings.conversation.conversationId}/event`,
+            url: `${this.serviceUrl}/v3/directline/conversations/${settings.conversation.conversationId}/activities`,
             method: "POST",
             json : activity
         };

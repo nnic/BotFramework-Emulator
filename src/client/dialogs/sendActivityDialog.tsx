@@ -35,7 +35,7 @@ import * as React from 'react';
 import { remote } from 'electron';
 import { getSettings, Settings, addSettingsListener } from '../settings';
 import { Settings as ServerSettings } from '../../types/serverSettingsTypes';
-import { IActionActivity } from '../../types/activityTypes';
+import { IGenericActivity } from '../../types/activityTypes';
 import { AddressBarActions, ConversationActions, ServerSettingsActions } from '../reducers';
 import { IBot, newBot } from '../../types/botTypes';
 import * as log from '../log';
@@ -71,8 +71,7 @@ export class SendActivityDialog extends React.Component<{}, {}> {
     }
 
     onAccept = () => {
-        // let activity : IActionActivity = { type : this.activityType.value, name : this.activityName.value, value : this.activityValue.value, from : { id : this.activityFromId.value }  };
-        let activity : IActionActivity = { type : this.activityType.value, name : this.activityName.value, value : this.activityValue.value };
+        let activity : IGenericActivity = { type : this.activityType.value, name : this.activityName.value, value : this.activityValue.value };
         emulator_1.Emulator.sendActivity(activity);
         AddressBarActions.hideSendActivity();
     }
