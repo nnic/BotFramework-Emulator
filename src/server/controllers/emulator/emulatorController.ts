@@ -43,6 +43,7 @@ import { ErrorCodes, IResourceResponse, IErrorResponse } from '../../../types/re
 import { IChannelAccount } from '../../../types/accountTypes';
 import { IBot } from '../../../types/botTypes';
 import { Conversation } from '../../conversationManager';
+import { IActivity } from '../../../types/activityTypes';
 
 
 function getConversation(conversationId: string): Conversation {
@@ -70,7 +71,7 @@ export class EmulatorController {
         server.router.post('/emulator/:conversationId/ping', this.ping);
         server.router.del('/emulator/:conversationId/userdata', this.deleteUserData);
         server.router.post('/emulator/system/quitAndInstall', this.quitAndInstall);
-        server.router.post('/emulator/:conversationId/event', this.sendActivity,);
+        server.router.post('/emulator/:conversationId/event', jsonBodyParser(), this.sendActivity);
     }
 
     static getUsers = (req: Restify.Request, res: Restify.Response, next: Restify.Next): any => {
@@ -175,7 +176,7 @@ export class EmulatorController {
     static sendActivity = (req: Restify.Request, res: Restify.Response, next: Restify.Next): any => {
         try {
             const conversation = getConversation(req.params.conversationId);
-            const activity = { type: 'event' };
+            const activity: IActivity = req.body;
             conversation.sendActivity(activity);
             res.send(HttpStatus.OK);
             res.end();

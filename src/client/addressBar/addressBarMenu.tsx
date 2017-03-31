@@ -121,12 +121,6 @@ export class AddressBarMenu extends React.Component<{}, {}> {
                                     Emulator.deleteUserData();
                                 }
                             },
-                             {
-                                label: 'Send Activity',
-                                click: () => {
-                                    Emulator.sendActivity();
-                                }
-                            },
                         ]
                     },
                     {

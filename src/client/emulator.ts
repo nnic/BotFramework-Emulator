@@ -33,6 +33,7 @@
 
 import * as request from 'request';
 import { getSettings } from './settings';
+import { IActivity } from "../types/activityTypes";
 
 
 export class Emulator {
@@ -112,14 +113,14 @@ export class Emulator {
         request(options);
     }
 
-    public static sendActivity() {
+    public static sendActivity(activity : IActivity) {
         const settings = getSettings();
         let options: request.OptionsWithUrl = {
             url: `${this.serviceUrl}/emulator/${settings.conversation.conversationId}/event`,
             method: "POST",
-            json : '{ type: "event", value: "@Model.EncryptedRelationId", from: { id: "pageLoadedId" }, name: "pageLoadedName" }'
+            json : activity
         };
-         request(options);
+        request(options);
     }
 
     public static quitAndInstall() {

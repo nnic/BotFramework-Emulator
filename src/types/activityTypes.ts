@@ -92,6 +92,8 @@ export interface IMessageActivity extends IActivity {
 }
 
 export interface IActionActivity extends IActivity {
+    name?: string,
+    value?: any
 }
 
 export interface IEndOfConversationActivity extends IActivity {

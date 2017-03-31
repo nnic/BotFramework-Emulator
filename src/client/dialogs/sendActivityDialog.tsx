@@ -35,7 +35,7 @@ import * as React from 'react';
 import { remote } from 'electron';
 import { getSettings, Settings, addSettingsListener } from '../settings';
 import { Settings as ServerSettings } from '../../types/serverSettingsTypes';
-import { IActivity } from '../../types/activityTypes';
+import { IActionActivity } from '../../types/activityTypes';
 import { AddressBarActions, ConversationActions, ServerSettingsActions } from '../reducers';
 import { IBot, newBot } from '../../types/botTypes';
 import * as log from '../log';
@@ -43,10 +43,6 @@ import * as path from 'path';
 import * as Constants from '../constants';
 
 const emulator_1 = require("../emulator");
-
-interface ISendActivity {
-    activity?: IActivity
-}
 
 export class SendActivityDialog extends React.Component<{}, {}> {
     settingsUnsubscribe: any;
@@ -75,7 +71,9 @@ export class SendActivityDialog extends React.Component<{}, {}> {
     }
 
     onAccept = () => {
-        emulator_1.Emulator.sendActivity();
+        // let activity : IActionActivity = { type : this.activityType.value, name : this.activityName.value, value : this.activityValue.value, from : { id : this.activityFromId.value }  };
+        let activity : IActionActivity = { type : this.activityType.value, name : this.activityName.value, value : this.activityValue.value };
+        emulator_1.Emulator.sendActivity(activity);
         AddressBarActions.hideSendActivity();
     }
 
@@ -118,7 +116,8 @@ export class SendActivityDialog extends React.Component<{}, {}> {
                                 <input
                                     type="text"
                                     ref={ref => this.activityType = ref}
-                                    className="form-input sendactivity-path-input sendactivity-ngrokpath-input" />
+                                    className="form-input sendactivity-path-input sendactivity-ngrokpath-input" 
+                                    defaultValue={`${this.activityType || ''}`}/>
                             </div>
                              <div className="input-group">
                                 <label className="form-label">
@@ -126,9 +125,19 @@ export class SendActivityDialog extends React.Component<{}, {}> {
                                 </label>
                                 <input
                                     type="text"
-                                    ref={ref => this.activityType = ref}
+                                    ref={ref => this.activityName = ref}
                                     className="form-input sendactivity-path-input sendactivity-ngrokpath-input"
-                                    defaultValue={`${serverSettings.framework.ngrokPath || ''}`} />
+                                    defaultValue={`${this.activityName || ''}`} />
+                            </div>
+                             <div className="input-group">
+                                <label className="form-label">
+                                    Value:
+                                </label>
+                                <input
+                                    type="text"
+                                    ref={ref => this.activityValue = ref}
+                                    className="form-input sendactivity-path-input sendactivity-ngrokpath-input"
+                                    defaultValue={`${this.activityValue || ''}`} />
                             </div>
                         </div>
                     </div>
